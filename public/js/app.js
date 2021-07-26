@@ -1900,6 +1900,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1923,7 +1924,28 @@ __webpack_require__.r(__webpack_exports__);
       _this.types = response.data;
     });
   },
-  methods: {},
+  methods: {
+    Score: function Score(type) {
+      var _this2 = this;
+
+      document.querySelectorAll('.btn-score').forEach(function (button) {
+        button.disabled = true;
+      });
+      setTimeout(function () {
+        document.querySelectorAll('.btn-score').forEach(function (button) {
+          button.disabled = false;
+        });
+      }, 30000);
+      axios.post("/api/types", {
+        id: type.id,
+        score: parseInt(type.score) + 1
+      }).then(function (response) {
+        axios.get('/api/types').then(function (response) {
+          _this2.types = response.data;
+        });
+      })["catch"](function (error) {});
+    }
+  },
   computed: {
     swiper: function swiper() {
       return this.$refs.IndexFirstSwiper.$swiper;
@@ -34132,6 +34154,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-score",
+                  attrs: { id: "btn" + type.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.Score(type)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              ),
               _vm._v(
                 "\n                " + _vm._s(type.score) + "\n            "
               )

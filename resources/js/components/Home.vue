@@ -15,6 +15,7 @@
                     </swiper-slide>
                 </swiper>
                 <div class="score">
+                    <button @click="Score(type)" :id="'btn'+type.id" class="btn btn-danger btn-score">Голосовать</button>
                     {{ type.score }}
                 </div>
             </div>
@@ -46,6 +47,30 @@
             });
         },
         methods: {
+            Score(type) {
+                document.querySelectorAll('.btn-score').forEach(function(button) {
+                    button.disabled = true;
+                });
+
+                setTimeout(function(){
+                    document.querySelectorAll('.btn-score').forEach(function(button) {
+                        button.disabled = false;
+                    });
+                }, 30000);
+
+                axios
+                .post(`/api/types`, {
+                    id: type.id,
+                    score: parseInt(type.score) + 1,
+                })
+                .then((response => {
+                    axios.get('/api/types').then(response => {
+                        this.types = response.data
+                    });
+                }))
+                .catch((error) => {
+                });
+            },
         },
         computed: {
             swiper() {
