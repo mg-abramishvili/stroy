@@ -1917,6 +1917,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1925,6 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
       types: {},
       swiperOptions: {
         slidesPerView: 1,
+        loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -34247,9 +34250,14 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
+                _c("button", { staticClass: "swiper-button-prev" }),
+                _vm._v(" "),
+                _c("button", { staticClass: "swiper-button-next" }),
+                _vm._v(" "),
                 _c(
                   "button",
                   {
+                    staticClass: "close",
                     on: {
                       click: function($event) {
                         return _vm.closeModal(type)

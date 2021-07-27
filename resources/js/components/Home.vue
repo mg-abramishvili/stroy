@@ -32,7 +32,9 @@
                             <img :src="galleryItem">
                         </swiper-slide>
                     </swiper>
-                    <button @click="closeModal(type)">&times;</button>
+                    <button class="swiper-button-prev"></button>
+                    <button class="swiper-button-next"></button>
+                    <button @click="closeModal(type)" class="close">&times;</button>
                 </div>
             </template>
         </div>
@@ -49,6 +51,7 @@
                 types: {},
                 swiperOptions: {
                     slidesPerView: 1,
+                    loop: true,
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'

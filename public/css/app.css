@@ -111,7 +111,7 @@ h1 {
     visibility: hidden;
 }
 
-.modal button {
+.modal .close {
     position: absolute;
     top: 2vh;
     right: 5vh;
@@ -124,6 +124,7 @@ h1 {
     line-height: 1;
     margin-top: -0.5vh;
     padding: 3vh;
+    font-weight: normal;
 }
 
 .modal img {
@@ -133,4 +134,25 @@ h1 {
     max-height: 100vh;
     display: block;
     margin: 0 auto;
+}
+
+.modal .swiper-button-prev,
+.modal .swiper-button-next {
+    width: 7vh;
+    height: 7vh;
+    border: 0;
+    box-shadow: none;
+    background: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.modal .swiper-button-prev,
+.modal .swiper-container-rtl .swiper-button-next {
+    left: 5vh;
+}
+
+.modal .swiper-button-next,
+.modal .swiper-container-rtl .swiper-button-prev {
+    right: 5vh;
 }
