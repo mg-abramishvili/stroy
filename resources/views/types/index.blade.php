@@ -6,9 +6,9 @@
             <div class="col-6">
                 <h1>Квартиры</h1>
             </div>
-            <div class="col-6" style="text-align: right;">
+            <!--<div class="col-6" style="text-align: right;">
                 <a href="/types/create" class="btn btn-primary">Добавить</a>
-            </div>
+            </div>-->
         </div>
 
         <table class="table table-bordered table-hover">
