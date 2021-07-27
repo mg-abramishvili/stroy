@@ -10,7 +10,7 @@ body {
 
 .container-fluid {
     background-color: rgb(46, 84, 142);
-    padding: 0 1vh;
+    padding: 0;
     margin: 0;
     width: 100vw;
     height: 100vh;
@@ -32,7 +32,7 @@ body {
 }
 
 .swiper-slide {
-    padding: 1vh;
+    padding: 2vh;
     background-color: rgba(0,0,0,0.1);
 }
 
@@ -101,6 +101,19 @@ h1 {
     display: block;
 }
 
+.swiper-button-prev, .swiper-button-next {
+    background: #fff;
+    border: none;
+}
+
+.swiper-button-prev {
+    left: 6vh !important;
+}
+
+.swiper-button-next {
+    right: 6vh !important;
+}
+
 .modal {
     display: block;
     background-color: rgba(0,0,0,0.8);
@@ -155,4 +168,8 @@ h1 {
 .modal .swiper-button-next,
 .modal .swiper-container-rtl .swiper-button-prev {
     right: 5vh;
+}
+
+.modal .swiper-slide {
+    padding: 0;
 }

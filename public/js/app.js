@@ -1919,28 +1919,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      types: {},
-      swiperOptions: {
+      type1: {},
+      type2: {},
+      type3: {},
+      swiperOptionsIndex1: {
         slidesPerView: 1,
-        loop: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.IndexSwiper1_next',
+          prevEl: '.IndexSwiper1_prev'
         }
       },
-      slider_prev_next: true
+      swiperOptionsDetail1: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.DetailSwiper1_next',
+          prevEl: '.DetailSwiper1_prev'
+        }
+      },
+      swiperOptionsIndex2: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.IndexSwiper2_next',
+          prevEl: '.IndexSwiper2_prev'
+        }
+      },
+      swiperOptionsDetail2: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.DetailSwiper2_next',
+          prevEl: '.DetailSwiper2_prev'
+        }
+      },
+      swiperOptionsIndex3: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.IndexSwiper3_next',
+          prevEl: '.IndexSwiper3_prev'
+        }
+      },
+      swiperOptionsDetail3: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.DetailSwiper3_next',
+          prevEl: '.DetailSwiper3_prev'
+        }
+      }
     };
   },
   created: function created() {
     var _this = this;
 
     axios.get('/api/types').then(function (response) {
-      _this.types = response.data;
+      _this.type1 = response.data[0];
+      _this.type2 = response.data[1];
+      _this.type3 = response.data[2];
     });
   },
   methods: {
@@ -1960,24 +2046,20 @@ __webpack_require__.r(__webpack_exports__);
         score: parseInt(type.score) + 1
       }).then(function (response) {
         axios.get('/api/types').then(function (response) {
-          _this2.types = response.data;
+          _this2.type1 = response.data[0];
+          _this2.type2 = response.data[1];
+          _this2.type3 = response.data[2];
         });
       })["catch"](function (error) {});
     },
-    openModal: function openModal(type, index) {
-      //this.IndexSwiper.slideTo(2, false)
-      document.getElementById('modal' + type.id).style.visibility = "visible";
+    openModal: function openModal(id, index) {
+      document.getElementById('modal' + id).style.visibility = "visible";
+      this.$refs.DetailSwiper1.$swiper.slideTo(index, false);
+      this.$refs.DetailSwiper2.$swiper.slideTo(index, false);
+      this.$refs.DetailSwiper3.$swiper.slideTo(index, false);
     },
-    closeModal: function closeModal(type) {
-      document.getElementById('modal' + type.id).style.visibility = "hidden";
-    }
-  },
-  computed: {
-    IndexSwiper: function IndexSwiper() {
-      return this.$refs.IndexSwiper.$swiper;
-    },
-    DetailSwiper: function DetailSwiper() {
-      return this.$refs.DetailSwiper.$swiper;
+    closeModal: function closeModal(id) {
+      document.getElementById('modal' + id).style.visibility = "hidden";
     }
   },
   components: {
@@ -34156,124 +34238,301 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _vm._l(_vm.types, function(type) {
-          return [
-            _c(
-              "div",
-              { staticClass: "col-4" },
-              [
-                _c("p", { staticClass: "name_title" }, [
-                  _vm._v(_vm._s(type.name))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "swiper",
-                  {
-                    ref: "IndexSwiper",
-                    refInFor: true,
-                    attrs: { options: _vm.swiperOptions }
-                  },
-                  _vm._l(type.gallery, function(galleryItem, index) {
-                    return _c("swiper-slide", { staticClass: "swiper-slide" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "swiper-slide-inner",
-                          style: {
-                            "background-image": "url(" + galleryItem + ")"
-                          }
-                        },
-                        [
-                          _c("div", {
-                            staticClass: "link_to_modal",
-                            on: {
-                              click: function($event) {
-                                return _vm.openModal(type, index)
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    ])
-                  }),
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "score" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-score",
-                      attrs: { id: "btn" + type.id },
-                      on: {
-                        click: function($event) {
-                          return _vm.Score(type)
-                        }
-                      }
-                    },
-                    [_vm._v("Голосовать")]
-                  ),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(type.score) +
-                      "\n                "
-                  )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                key: "modal" + type.id,
-                staticClass: "modal",
-                attrs: { id: "modal" + type.id }
-              },
-              [
-                _c(
-                  "swiper",
-                  {
-                    ref: "DetailSwiper",
-                    refInFor: true,
-                    attrs: { options: _vm.swiperOptions }
-                  },
-                  _vm._l(type.gallery, function(galleryItem) {
-                    return _c("swiper-slide", { key: galleryItem }, [
-                      _c("img", { attrs: { src: galleryItem } })
-                    ])
-                  }),
-                  1
-                ),
-                _vm._v(" "),
-                _c("button", { staticClass: "swiper-button-prev" }),
-                _vm._v(" "),
-                _c("button", { staticClass: "swiper-button-next" }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    on: {
-                      click: function($event) {
-                        return _vm.closeModal(type)
-                      }
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-4" },
+        [
+          _c("p", { staticClass: "name_title" }, [
+            _vm._v(_vm._s(_vm.type1.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "swiper",
+            {
+              ref: "IndexSwiper1",
+              attrs: { options: _vm.swiperOptionsIndex1 }
+            },
+            _vm._l(_vm.type1.gallery, function(galleryItem, index) {
+              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                _c("div", {
+                  staticClass: "swiper-slide-inner",
+                  style: { "background-image": "url(" + galleryItem + ")" },
+                  on: {
+                    click: function($event) {
+                      return _vm.openModal(_vm.type1.id, index)
                     }
-                  },
-                  [_vm._v("×")]
-                )
-              ],
-              1
+                  }
+                })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-prev IndexSwiper1_prev" }),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-next IndexSwiper1_next" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "score" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-score",
+                attrs: { id: "btn" + _vm.type1.id },
+                on: {
+                  click: function($event) {
+                    return _vm.Score(_vm.type1)
+                  }
+                }
+              },
+              [_vm._v("Голосовать")]
+            ),
+            _vm._v(
+              "\n                " + _vm._s(_vm.type1.score) + "\n            "
             )
-          ]
-        })
-      ],
-      2
-    )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", attrs: { id: "modal" + _vm.type1.id } },
+        [
+          _c(
+            "swiper",
+            {
+              ref: "DetailSwiper1",
+              attrs: { options: _vm.swiperOptionsDetail1 }
+            },
+            _vm._l(_vm.type1.gallery, function(galleryItem) {
+              return _c("swiper-slide", { key: galleryItem }, [
+                _c("img", { attrs: { src: galleryItem } })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-prev DetailSwiper1_prev"
+          }),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-next DetailSwiper1_next"
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              on: {
+                click: function($event) {
+                  return _vm.closeModal(_vm.type1.id)
+                }
+              }
+            },
+            [_vm._v("×")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-4" },
+        [
+          _c("p", { staticClass: "name_title" }, [
+            _vm._v(_vm._s(_vm.type2.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "swiper",
+            {
+              ref: "IndexSwiper2",
+              attrs: { options: _vm.swiperOptionsIndex2 }
+            },
+            _vm._l(_vm.type2.gallery, function(galleryItem, index) {
+              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                _c("div", {
+                  staticClass: "swiper-slide-inner",
+                  style: { "background-image": "url(" + galleryItem + ")" },
+                  on: {
+                    click: function($event) {
+                      return _vm.openModal(_vm.type2.id, index)
+                    }
+                  }
+                })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-prev IndexSwiper2_prev" }),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-next IndexSwiper2_next" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "score" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-score",
+                attrs: { id: "btn" + _vm.type2.id },
+                on: {
+                  click: function($event) {
+                    return _vm.Score(_vm.type2)
+                  }
+                }
+              },
+              [_vm._v("Голосовать")]
+            ),
+            _vm._v(
+              "\n                " + _vm._s(_vm.type2.score) + "\n            "
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", attrs: { id: "modal" + _vm.type2.id } },
+        [
+          _c(
+            "swiper",
+            {
+              ref: "DetailSwiper2",
+              attrs: { options: _vm.swiperOptionsDetail2 }
+            },
+            _vm._l(_vm.type2.gallery, function(galleryItem) {
+              return _c("swiper-slide", { key: galleryItem }, [
+                _c("img", { attrs: { src: galleryItem } })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-prev DetailSwiper2_prev"
+          }),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-next DetailSwiper2_next"
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              on: {
+                click: function($event) {
+                  return _vm.closeModal(_vm.type2.id)
+                }
+              }
+            },
+            [_vm._v("×")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-4" },
+        [
+          _c("p", { staticClass: "name_title" }, [
+            _vm._v(_vm._s(_vm.type3.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "swiper",
+            {
+              ref: "IndexSwiper3",
+              attrs: { options: _vm.swiperOptionsIndex3 }
+            },
+            _vm._l(_vm.type3.gallery, function(galleryItem, index) {
+              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                _c("div", {
+                  staticClass: "swiper-slide-inner",
+                  style: { "background-image": "url(" + galleryItem + ")" },
+                  on: {
+                    click: function($event) {
+                      return _vm.openModal(_vm.type3.id, index)
+                    }
+                  }
+                })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-prev IndexSwiper3_prev" }),
+          _vm._v(" "),
+          _c("button", { staticClass: "swiper-button-next IndexSwiper3_next" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "score" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-score",
+                attrs: { id: "btn" + _vm.type3.id },
+                on: {
+                  click: function($event) {
+                    return _vm.Score(_vm.type3)
+                  }
+                }
+              },
+              [_vm._v("Голосовать")]
+            ),
+            _vm._v(
+              "\n                " + _vm._s(_vm.type3.score) + "\n            "
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", attrs: { id: "modal" + _vm.type3.id } },
+        [
+          _c(
+            "swiper",
+            {
+              ref: "DetailSwiper3",
+              attrs: { options: _vm.swiperOptionsDetail3 }
+            },
+            _vm._l(_vm.type3.gallery, function(galleryItem) {
+              return _c("swiper-slide", { key: galleryItem }, [
+                _c("img", { attrs: { src: galleryItem } })
+              ])
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-prev DetailSwiper3_prev"
+          }),
+          _vm._v(" "),
+          _c("button", {
+            staticClass: "swiper-button-next DetailSwiper3_next"
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              on: {
+                click: function($event) {
+                  return _vm.closeModal(_vm.type3.id)
+                }
+              }
+            },
+            [_vm._v("×")]
+          )
+        ],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = [
