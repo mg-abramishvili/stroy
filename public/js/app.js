@@ -1968,6 +1968,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -34286,9 +34306,6 @@ var render = function() {
                 }
               },
               [_vm._v("Голосовать")]
-            ),
-            _vm._v(
-              "\n                " + _vm._s(_vm.type1.score) + "\n            "
             )
           ])
         ],
@@ -34384,9 +34401,6 @@ var render = function() {
                 }
               },
               [_vm._v("Голосовать")]
-            ),
-            _vm._v(
-              "\n                " + _vm._s(_vm.type2.score) + "\n            "
             )
           ])
         ],
@@ -34482,9 +34496,6 @@ var render = function() {
                 }
               },
               [_vm._v("Голосовать")]
-            ),
-            _vm._v(
-              "\n                " + _vm._s(_vm.type3.score) + "\n            "
             )
           ])
         ],
@@ -34542,6 +34553,32 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "logos" }, [
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/1.png" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/2.png" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/3.png" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/4.png" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/5.png" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "logo-item" }, [
+            _c("img", { attrs: { src: "/img/6.png" } })
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "header" }, [
           _c("h1", [
             _vm._v(

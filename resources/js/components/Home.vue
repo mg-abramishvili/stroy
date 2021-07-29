@@ -2,6 +2,26 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                <div class="logos">
+                    <div class="logo-item">
+                        <img src="/img/1.png">
+                    </div>
+                    <div class="logo-item">
+                        <img src="/img/2.png">
+                    </div>
+                    <div class="logo-item">
+                        <img src="/img/3.png">
+                    </div>
+                    <div class="logo-item">
+                        <img src="/img/4.png">
+                    </div>
+                    <div class="logo-item">
+                        <img src="/img/5.png">
+                    </div>
+                    <div class="logo-item">
+                        <img src="/img/6.png">
+                    </div>
+                </div>
                 <div class="header">
                     <h1>
                         Уважаемые посетители шоурума,
@@ -22,7 +42,7 @@
                 <button class="swiper-button-next IndexSwiper1_next"></button>
                 <div class="score">
                     <button @click="Score(type1)" :id="'btn'+type1.id" class="btn btn-score">Голосовать</button>
-                    {{ type1.score }}
+                    <!--{{ type1.score }}-->
                 </div>
             </div>
             <div :id="'modal' + type1.id" class="modal">
@@ -47,7 +67,7 @@
                 <button class="swiper-button-next IndexSwiper2_next"></button>
                 <div class="score">
                     <button @click="Score(type2)" :id="'btn'+type2.id" class="btn btn-score">Голосовать</button>
-                    {{ type2.score }}
+                    <!--{{ type2.score }}-->
                 </div>
             </div>
             <div :id="'modal' + type2.id" class="modal">
@@ -72,7 +92,7 @@
                 <button class="swiper-button-next IndexSwiper3_next"></button>
                 <div class="score">
                     <button @click="Score(type3)" :id="'btn'+type3.id" class="btn btn-score">Голосовать</button>
-                    {{ type3.score }}
+                    <!--{{ type3.score }}-->
                 </div>
             </div>
             <div :id="'modal' + type3.id" class="modal">
