@@ -2082,6 +2082,19 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('modal' + id).style.visibility = "hidden";
     }
   },
+  mounted: function mounted() {
+    this._keyListener = function (e) {
+      if (e.key === 'q' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        window.location.href = '/types';
+      }
+    };
+
+    document.addEventListener('keydown', this._keyListener.bind(this));
+  },
+  beforeMount: function beforeMount() {
+    document.oncontextmenu = new Function("return false;");
+  },
   components: {
     Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper,
     SwiperSlide: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__.SwiperSlide
