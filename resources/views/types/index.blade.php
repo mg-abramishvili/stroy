@@ -9,6 +9,9 @@
             <!--<div class="col-6" style="text-align: right;">
                 <a href="/types/create" class="btn btn-primary">Добавить</a>
             </div>-->
+            <div class="col-6" style="text-align: right;">
+                <a href="/" class="btn btn-primary">Выйти</a>
+            </div>
         </div>
 
         <table class="table table-bordered table-hover">
