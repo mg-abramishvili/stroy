@@ -104,6 +104,8 @@ h1 {
 .btn-score:active {
     color: #333;
     background-color: #ffdd2d;
+    color: #fff;
+    background-color: rgb(46, 84, 142);
 }
 
 .link_to_modal {
