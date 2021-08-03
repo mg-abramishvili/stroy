@@ -1988,6 +1988,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2053,14 +2058,18 @@ __webpack_require__.r(__webpack_exports__);
     Score: function Score(type) {
       var _this2 = this;
 
+      document.getElementById('wrapper').classList.add("blur");
+      document.getElementById('confirm').style.visibility = "visible";
       document.querySelectorAll('.btn-score').forEach(function (button) {
         button.disabled = true;
       });
-      setTimeout(function () {
+      setTimeout(function (confirm) {
         document.querySelectorAll('.btn-score').forEach(function (button) {
           button.disabled = false;
         });
-      }, 30000);
+        document.getElementById('wrapper').classList.remove("blur");
+        document.getElementById('confirm').style.visibility = "hidden";
+      }, 5000);
       axios.post("/api/types", {
         id: type.id,
         score: parseInt(type.score) + 1
@@ -34269,294 +34278,310 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _vm._m(0),
+    _c("div", { attrs: { id: "wrapper" } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-4" },
+          [
+            _c("p", { staticClass: "name_title" }, [
+              _vm._v(_vm._s(_vm.type1.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "swiper",
+              {
+                ref: "IndexSwiper1",
+                attrs: { options: _vm.swiperOptionsIndex1 }
+              },
+              _vm._l(_vm.type1.gallery, function(galleryItem, index) {
+                return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                  _c("div", {
+                    staticClass: "swiper-slide-inner",
+                    style: { "background-image": "url(" + galleryItem + ")" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModal(_vm.type1.id, index)
+                      }
+                    }
+                  })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev IndexSwiper1_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next IndexSwiper1_next"
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-score",
+                  attrs: { id: "btn" + _vm.type1.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.Score(_vm.type1)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { id: "modal" + _vm.type1.id } },
+          [
+            _c(
+              "swiper",
+              {
+                ref: "DetailSwiper1",
+                attrs: { options: _vm.swiperOptionsDetail1 }
+              },
+              _vm._l(_vm.type1.gallery, function(galleryItem) {
+                return _c("swiper-slide", { key: galleryItem }, [
+                  _c("img", { attrs: { src: galleryItem } })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev DetailSwiper1_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next DetailSwiper1_next"
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal(_vm.type1.id)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-4" },
+          [
+            _c("p", { staticClass: "name_title" }, [
+              _vm._v(_vm._s(_vm.type2.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "swiper",
+              {
+                ref: "IndexSwiper2",
+                attrs: { options: _vm.swiperOptionsIndex2 }
+              },
+              _vm._l(_vm.type2.gallery, function(galleryItem, index) {
+                return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                  _c("div", {
+                    staticClass: "swiper-slide-inner",
+                    style: { "background-image": "url(" + galleryItem + ")" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModal(_vm.type2.id, index)
+                      }
+                    }
+                  })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev IndexSwiper2_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next IndexSwiper2_next"
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-score",
+                  attrs: { id: "btn" + _vm.type2.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.Score(_vm.type2)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { id: "modal" + _vm.type2.id } },
+          [
+            _c(
+              "swiper",
+              {
+                ref: "DetailSwiper2",
+                attrs: { options: _vm.swiperOptionsDetail2 }
+              },
+              _vm._l(_vm.type2.gallery, function(galleryItem) {
+                return _c("swiper-slide", { key: galleryItem }, [
+                  _c("img", { attrs: { src: galleryItem } })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev DetailSwiper2_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next DetailSwiper2_next"
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal(_vm.type2.id)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-4" },
+          [
+            _c("p", { staticClass: "name_title" }, [
+              _vm._v(_vm._s(_vm.type3.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "swiper",
+              {
+                ref: "IndexSwiper3",
+                attrs: { options: _vm.swiperOptionsIndex3 }
+              },
+              _vm._l(_vm.type3.gallery, function(galleryItem, index) {
+                return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                  _c("div", {
+                    staticClass: "swiper-slide-inner",
+                    style: { "background-image": "url(" + galleryItem + ")" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModal(_vm.type3.id, index)
+                      }
+                    }
+                  })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev IndexSwiper3_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next IndexSwiper3_next"
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-score",
+                  attrs: { id: "btn" + _vm.type3.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.Score(_vm.type3)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { id: "modal" + _vm.type3.id } },
+          [
+            _c(
+              "swiper",
+              {
+                ref: "DetailSwiper3",
+                attrs: { options: _vm.swiperOptionsDetail3 }
+              },
+              _vm._l(_vm.type3.gallery, function(galleryItem) {
+                return _c("swiper-slide", { key: galleryItem }, [
+                  _c("img", { attrs: { src: galleryItem } })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev DetailSwiper3_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next DetailSwiper3_next"
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal(_vm.type3.id)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            )
+          ],
+          1
+        )
+      ])
+    ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-4" },
-        [
-          _c("p", { staticClass: "name_title" }, [
-            _vm._v(_vm._s(_vm.type1.name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "swiper",
-            {
-              ref: "IndexSwiper1",
-              attrs: { options: _vm.swiperOptionsIndex1 }
-            },
-            _vm._l(_vm.type1.gallery, function(galleryItem, index) {
-              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
-                _c("div", {
-                  staticClass: "swiper-slide-inner",
-                  style: { "background-image": "url(" + galleryItem + ")" },
-                  on: {
-                    click: function($event) {
-                      return _vm.openModal(_vm.type1.id, index)
-                    }
-                  }
-                })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-prev IndexSwiper1_prev" }),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-next IndexSwiper1_next" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "score" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-score",
-                attrs: { id: "btn" + _vm.type1.id },
-                on: {
-                  click: function($event) {
-                    return _vm.Score(_vm.type1)
-                  }
-                }
-              },
-              [_vm._v("Голосовать")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "modal", attrs: { id: "modal" + _vm.type1.id } },
-        [
-          _c(
-            "swiper",
-            {
-              ref: "DetailSwiper1",
-              attrs: { options: _vm.swiperOptionsDetail1 }
-            },
-            _vm._l(_vm.type1.gallery, function(galleryItem) {
-              return _c("swiper-slide", { key: galleryItem }, [
-                _c("img", { attrs: { src: galleryItem } })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-prev DetailSwiper1_prev"
-          }),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-next DetailSwiper1_next"
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close",
-              on: {
-                click: function($event) {
-                  return _vm.closeModal(_vm.type1.id)
-                }
-              }
-            },
-            [_vm._v("×")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-4" },
-        [
-          _c("p", { staticClass: "name_title" }, [
-            _vm._v(_vm._s(_vm.type2.name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "swiper",
-            {
-              ref: "IndexSwiper2",
-              attrs: { options: _vm.swiperOptionsIndex2 }
-            },
-            _vm._l(_vm.type2.gallery, function(galleryItem, index) {
-              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
-                _c("div", {
-                  staticClass: "swiper-slide-inner",
-                  style: { "background-image": "url(" + galleryItem + ")" },
-                  on: {
-                    click: function($event) {
-                      return _vm.openModal(_vm.type2.id, index)
-                    }
-                  }
-                })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-prev IndexSwiper2_prev" }),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-next IndexSwiper2_next" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "score" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-score",
-                attrs: { id: "btn" + _vm.type2.id },
-                on: {
-                  click: function($event) {
-                    return _vm.Score(_vm.type2)
-                  }
-                }
-              },
-              [_vm._v("Голосовать")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "modal", attrs: { id: "modal" + _vm.type2.id } },
-        [
-          _c(
-            "swiper",
-            {
-              ref: "DetailSwiper2",
-              attrs: { options: _vm.swiperOptionsDetail2 }
-            },
-            _vm._l(_vm.type2.gallery, function(galleryItem) {
-              return _c("swiper-slide", { key: galleryItem }, [
-                _c("img", { attrs: { src: galleryItem } })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-prev DetailSwiper2_prev"
-          }),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-next DetailSwiper2_next"
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close",
-              on: {
-                click: function($event) {
-                  return _vm.closeModal(_vm.type2.id)
-                }
-              }
-            },
-            [_vm._v("×")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-4" },
-        [
-          _c("p", { staticClass: "name_title" }, [
-            _vm._v(_vm._s(_vm.type3.name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "swiper",
-            {
-              ref: "IndexSwiper3",
-              attrs: { options: _vm.swiperOptionsIndex3 }
-            },
-            _vm._l(_vm.type3.gallery, function(galleryItem, index) {
-              return _c("swiper-slide", { staticClass: "swiper-slide" }, [
-                _c("div", {
-                  staticClass: "swiper-slide-inner",
-                  style: { "background-image": "url(" + galleryItem + ")" },
-                  on: {
-                    click: function($event) {
-                      return _vm.openModal(_vm.type3.id, index)
-                    }
-                  }
-                })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-prev IndexSwiper3_prev" }),
-          _vm._v(" "),
-          _c("button", { staticClass: "swiper-button-next IndexSwiper3_next" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "score" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-score",
-                attrs: { id: "btn" + _vm.type3.id },
-                on: {
-                  click: function($event) {
-                    return _vm.Score(_vm.type3)
-                  }
-                }
-              },
-              [_vm._v("Голосовать")]
-            )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "modal", attrs: { id: "modal" + _vm.type3.id } },
-        [
-          _c(
-            "swiper",
-            {
-              ref: "DetailSwiper3",
-              attrs: { options: _vm.swiperOptionsDetail3 }
-            },
-            _vm._l(_vm.type3.gallery, function(galleryItem) {
-              return _c("swiper-slide", { key: galleryItem }, [
-                _c("img", { attrs: { src: galleryItem } })
-              ])
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-prev DetailSwiper3_prev"
-          }),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "swiper-button-next DetailSwiper3_next"
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "close",
-              on: {
-                click: function($event) {
-                  return _vm.closeModal(_vm.type3.id)
-                }
-              }
-            },
-            [_vm._v("×")]
-          )
-        ],
-        1
-      )
-    ])
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -34595,15 +34620,23 @@ var staticRenderFns = [
         _c("div", { staticClass: "header" }, [
           _c("h1", [
             _vm._v(
-              "\n                    Уважаемые посетители шоурума,\n                    "
+              "\n                        Уважаемые посетители шоурума,\n                        "
             ),
             _c("br"),
             _vm._v(
-              "просим Вас выбрать наиболее понравившийся вариант отделки квартиры\n                "
+              "просим Вас выбрать наиболее понравившийся вариант отделки квартиры\n                    "
             )
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "confirm", attrs: { id: "confirm" } }, [
+      _c("div", [_vm._v("Ваш голос принят!")])
     ])
   }
 ]

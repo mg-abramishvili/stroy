@@ -207,3 +207,23 @@ h1 {
     display: block;
     margin: 0 auto;
 }
+
+.blur {
+    filter: blur(10px);
+}
+
+.confirm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 40vh;
+    background-color: rgb(46, 84, 142);
+    color: #fff;
+    z-index: 20;
+    font-size: 5vh;
+    text-align: center;
+    padding-top: 15vh;
+    visibility: hidden;
+}
