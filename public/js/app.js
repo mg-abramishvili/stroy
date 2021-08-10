@@ -1993,6 +1993,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2001,6 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
       type1: {},
       type2: {},
       type3: {},
+      roof1: {},
+      roof2: {},
       swiperOptionsIndex1: {
         slidesPerView: 1,
         navigation: {
@@ -2042,6 +2097,34 @@ __webpack_require__.r(__webpack_exports__);
           nextEl: '.DetailSwiper3_next',
           prevEl: '.DetailSwiper3_prev'
         }
+      },
+      swiperOptionsIndexRoof1: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.IndexRoofSwiper1_next',
+          prevEl: '.IndexRoofSwiper1_prev'
+        }
+      },
+      swiperOptionsDetailRoof1: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.DetailRoofSwiper1_next',
+          prevEl: '.DetailRoofSwiper1_prev'
+        }
+      },
+      swiperOptionsIndexRoof2: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.IndexRoofSwiper2_next',
+          prevEl: '.IndexRoofSwiper2_prev'
+        }
+      },
+      swiperOptionsDetailRoof2: {
+        slidesPerView: 1,
+        navigation: {
+          nextEl: '.DetailRoofSwiper2_next',
+          prevEl: '.DetailRoofSwiper2_prev'
+        }
       }
     };
   },
@@ -2052,6 +2135,10 @@ __webpack_require__.r(__webpack_exports__);
       _this.type1 = response.data[0];
       _this.type2 = response.data[1];
       _this.type3 = response.data[2];
+    });
+    axios.get('/api/roofs').then(function (response) {
+      _this.roof1 = response.data[0];
+      _this.roof2 = response.data[1];
     });
   },
   methods: {
@@ -2069,6 +2156,8 @@ __webpack_require__.r(__webpack_exports__);
         });
         document.getElementById('wrapper').classList.remove("blur");
         document.getElementById('confirm').style.visibility = "hidden";
+        document.getElementById('step1').style.visibility = "hidden";
+        document.getElementById('step2').style.visibility = "visible";
       }, 5000);
       axios.post("/api/types", {
         id: type.id,
@@ -2081,11 +2170,40 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (error) {});
     },
+    ScoreRoof: function ScoreRoof(roof) {
+      var _this3 = this;
+
+      document.getElementById('wrapper').classList.add("blur");
+      document.getElementById('confirm').style.visibility = "visible";
+      document.querySelectorAll('.btn-score').forEach(function (button) {
+        button.disabled = true;
+      });
+      setTimeout(function (confirm) {
+        document.querySelectorAll('.btn-score').forEach(function (button) {
+          button.disabled = false;
+        });
+        document.getElementById('wrapper').classList.remove("blur");
+        document.getElementById('confirm').style.visibility = "hidden";
+        document.getElementById('step1').style.visibility = "visible";
+        document.getElementById('step2').style.visibility = "hidden";
+      }, 5000);
+      axios.post("/api/roofs", {
+        id: roof.id,
+        score: parseInt(roof.score) + 1
+      }).then(function (response) {
+        axios.get('/api/roofs').then(function (response) {
+          _this3.roof1 = response.data[0];
+          _this3.roof2 = response.data[1];
+        });
+      })["catch"](function (error) {});
+    },
     openModal: function openModal(id, index) {
       document.getElementById('modal' + id).style.visibility = "visible";
       this.$refs.DetailSwiper1.$swiper.slideTo(index, false);
       this.$refs.DetailSwiper2.$swiper.slideTo(index, false);
       this.$refs.DetailSwiper3.$swiper.slideTo(index, false);
+      this.$refs.DetailRoofSwiper1.$swiper.slideTo(index, false);
+      this.$refs.DetailRoofSwiper2.$swiper.slideTo(index, false);
     },
     closeModal: function closeModal(id) {
       document.getElementById('modal' + id).style.visibility = "hidden";
@@ -2095,7 +2213,7 @@ __webpack_require__.r(__webpack_exports__);
     this._keyListener = function (e) {
       if (e.key === 'q' && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
-        window.location.href = '/types';
+        window.location.href = '/admin';
       }
     };
 
@@ -34281,7 +34399,7 @@ var render = function() {
     _c("div", { attrs: { id: "wrapper" } }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row", attrs: { id: "step1" } }, [
         _c(
           "div",
           { staticClass: "col-4" },
@@ -34570,6 +34688,206 @@ var render = function() {
                 on: {
                   click: function($event) {
                     return _vm.closeModal(_vm.type3.id)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row", attrs: { id: "step2" } }, [
+        _c(
+          "div",
+          { staticClass: "col-4", staticStyle: { "margin-left": "16.5vw" } },
+          [
+            _c("p", { staticClass: "name_title" }, [
+              _vm._v(_vm._s(_vm.roof1.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "swiper",
+              {
+                ref: "IndexRoofSwiper1",
+                attrs: { options: _vm.swiperOptionsIndexRoof1 }
+              },
+              _vm._l(_vm.roof1.gallery, function(galleryItem, index) {
+                return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                  _c("div", {
+                    staticClass: "swiper-slide-inner",
+                    style: { "background-image": "url(" + galleryItem + ")" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModal(_vm.roof1.id, index)
+                      }
+                    }
+                  })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev IndexRoofSwiper1_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next IndexRoofSwiper1_next"
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-score",
+                  attrs: { id: "btn" + _vm.roof1.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.ScoreRoof(_vm.roof1)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { id: "modal" + _vm.roof1.id } },
+          [
+            _c(
+              "swiper",
+              {
+                ref: "DetailRoofSwiper1",
+                attrs: { options: _vm.swiperOptionsDetailRoof1 }
+              },
+              _vm._l(_vm.roof1.gallery, function(galleryItem) {
+                return _c("swiper-slide", { key: galleryItem }, [
+                  _c("img", { attrs: { src: galleryItem } })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev DetailRoofSwiper1_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next DetailRoofSwiper1_next"
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal(_vm.roof1.id)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-4" },
+          [
+            _c("p", { staticClass: "name_title" }, [
+              _vm._v(_vm._s(_vm.roof2.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "swiper",
+              {
+                ref: "IndexRoofSwiper2",
+                attrs: { options: _vm.swiperOptionsIndexRoof2 }
+              },
+              _vm._l(_vm.roof2.gallery, function(galleryItem, index) {
+                return _c("swiper-slide", { staticClass: "swiper-slide" }, [
+                  _c("div", {
+                    staticClass: "swiper-slide-inner",
+                    style: { "background-image": "url(" + galleryItem + ")" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModal(_vm.roof2.id, index)
+                      }
+                    }
+                  })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev IndexRoofSwiper2_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next IndexRoofSwiper2_next"
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "score" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-score",
+                  attrs: { id: "btn" + _vm.roof2.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.ScoreRoof(_vm.roof2)
+                    }
+                  }
+                },
+                [_vm._v("Голосовать")]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { id: "modal" + _vm.roof2.id } },
+          [
+            _c(
+              "swiper",
+              {
+                ref: "DetailRoofSwiper2",
+                attrs: { options: _vm.swiperOptionsDetail2 }
+              },
+              _vm._l(_vm.roof2.gallery, function(galleryItem) {
+                return _c("swiper-slide", { key: galleryItem }, [
+                  _c("img", { attrs: { src: galleryItem } })
+                ])
+              }),
+              1
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-prev DetailRoofSwiper2_prev"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "swiper-button-next DetailRoofSwiper2_next"
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal(_vm.roof2.id)
                   }
                 }
               },

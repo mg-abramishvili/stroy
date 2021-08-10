@@ -31,7 +31,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div id="step1" class="row">
                 <div class="col-4">
                     <p class="name_title">{{ type1.name }}</p>
                     <swiper ref="IndexSwiper1" :options="swiperOptionsIndex1">
@@ -106,8 +107,60 @@
                     <button class="swiper-button-next DetailSwiper3_next"></button>
                     <button @click="closeModal(type3.id)" class="close">&times;</button>
                 </div>
-
             </div>
+
+            <div id="step2" class="row">
+                <div class="col-4" style="margin-left: 16.5vw;">
+                    <p class="name_title">{{ roof1.name }}</p>
+                    <swiper ref="IndexRoofSwiper1" :options="swiperOptionsIndexRoof1">
+                        <swiper-slide v-for="(galleryItem, index) in roof1.gallery" class="swiper-slide">
+                            <div @click="openModal(roof1.id, index)" class="swiper-slide-inner" v-bind:style="{ 'background-image': 'url(' + galleryItem + ')' }"></div>
+                        </swiper-slide>
+                    </swiper>
+                    <button class="swiper-button-prev IndexRoofSwiper1_prev"></button>
+                    <button class="swiper-button-next IndexRoofSwiper1_next"></button>
+                    <div class="score">
+                        <button @click="ScoreRoof(roof1)" :id="'btn'+roof1.id" class="btn btn-score">Голосовать</button>
+                        <!--{{ type1.score }}-->
+                    </div>
+                </div>
+                <div :id="'modal' + roof1.id" class="modal">
+                    <swiper ref="DetailRoofSwiper1" :options="swiperOptionsDetailRoof1">
+                        <swiper-slide v-for="galleryItem in roof1.gallery" :key="galleryItem">
+                            <img :src="galleryItem">
+                        </swiper-slide>
+                    </swiper>
+                    <button class="swiper-button-prev DetailRoofSwiper1_prev"></button>
+                    <button class="swiper-button-next DetailRoofSwiper1_next"></button>
+                    <button @click="closeModal(roof1.id)" class="close">&times;</button>
+                </div>
+
+                <div class="col-4">
+                    <p class="name_title">{{ roof2.name }}</p>
+                    <swiper ref="IndexRoofSwiper2" :options="swiperOptionsIndexRoof2">
+                        <swiper-slide v-for="(galleryItem, index) in roof2.gallery" class="swiper-slide">
+                            <div @click="openModal(roof2.id, index)" class="swiper-slide-inner" v-bind:style="{ 'background-image': 'url(' + galleryItem + ')' }"></div>
+                        </swiper-slide>
+                    </swiper>
+                    <button class="swiper-button-prev IndexRoofSwiper2_prev"></button>
+                    <button class="swiper-button-next IndexRoofSwiper2_next"></button>
+                    <div class="score">
+                        <button @click="ScoreRoof(roof2)" :id="'btn'+roof2.id" class="btn btn-score">Голосовать</button>
+                        <!--{{ type2.score }}-->
+                    </div>
+                </div>
+                <div :id="'modal' + roof2.id" class="modal">
+                    <swiper ref="DetailRoofSwiper2" :options="swiperOptionsDetail2">
+                        <swiper-slide v-for="galleryItem in roof2.gallery" :key="galleryItem">
+                            <img :src="galleryItem">
+                        </swiper-slide>
+                    </swiper>
+                    <button class="swiper-button-prev DetailRoofSwiper2_prev"></button>
+                    <button class="swiper-button-next DetailRoofSwiper2_next"></button>
+                    <button @click="closeModal(roof2.id)" class="close">&times;</button>
+                </div>
+            </div>
+
         </div>
         <div id="confirm" class="confirm">
             <div>Ваш голос принят!</div>
@@ -125,6 +178,8 @@
                 type1: {},
                 type2: {},
                 type3: {},
+                roof1: {},
+                roof2: {},
                 swiperOptionsIndex1: {
                     slidesPerView: 1,
                     navigation: {
@@ -167,6 +222,34 @@
                         prevEl: '.DetailSwiper3_prev'
                     },
                 },
+                swiperOptionsIndexRoof1: {
+                    slidesPerView: 1,
+                    navigation: {
+                        nextEl: '.IndexRoofSwiper1_next',
+                        prevEl: '.IndexRoofSwiper1_prev'
+                    },
+                },
+                swiperOptionsDetailRoof1: {
+                    slidesPerView: 1,
+                    navigation: {
+                        nextEl: '.DetailRoofSwiper1_next',
+                        prevEl: '.DetailRoofSwiper1_prev'
+                    },
+                },
+                swiperOptionsIndexRoof2: {
+                    slidesPerView: 1,
+                    navigation: {
+                        nextEl: '.IndexRoofSwiper2_next',
+                        prevEl: '.IndexRoofSwiper2_prev'
+                    },
+                },
+                swiperOptionsDetailRoof2: {
+                    slidesPerView: 1,
+                    navigation: {
+                        nextEl: '.DetailRoofSwiper2_next',
+                        prevEl: '.DetailRoofSwiper2_prev'
+                    },
+                },
             }
         },
         created() {
@@ -174,6 +257,10 @@
                 this.type1 = response.data[0]
                 this.type2 = response.data[1]
                 this.type3 = response.data[2]
+            });
+            axios.get('/api/roofs').then(response => {
+                this.roof1 = response.data[0]
+                this.roof2 = response.data[1]
             });
         },
         methods: {
@@ -192,6 +279,9 @@
                     });
                     document.getElementById('wrapper').classList.remove("blur");
                     document.getElementById('confirm').style.visibility = "hidden";
+
+                    document.getElementById('step1').style.visibility = "hidden";
+                    document.getElementById('step2').style.visibility = "visible";
                 }, 5000);
 
                 axios
@@ -209,11 +299,47 @@
                 .catch((error) => {
                 });
             },
+            ScoreRoof(roof) {
+                document.getElementById('wrapper').classList.add("blur");
+
+                document.getElementById('confirm').style.visibility = "visible";
+
+                document.querySelectorAll('.btn-score').forEach(function(button) {
+                    button.disabled = true;
+                });
+
+                setTimeout(function(confirm){
+                    document.querySelectorAll('.btn-score').forEach(function(button) {
+                        button.disabled = false;
+                    });
+                    document.getElementById('wrapper').classList.remove("blur");
+                    document.getElementById('confirm').style.visibility = "hidden";
+
+                    document.getElementById('step1').style.visibility = "visible";
+                    document.getElementById('step2').style.visibility = "hidden";
+                }, 5000);
+
+                axios
+                .post(`/api/roofs`, {
+                    id: roof.id,
+                    score: parseInt(roof.score) + 1,
+                })
+                .then((response => {
+                    axios.get('/api/roofs').then(response => {
+                        this.roof1 = response.data[0]
+                        this.roof2 = response.data[1]
+                    });
+                }))
+                .catch((error) => {
+                });
+            },
             openModal(id, index) {
                 document.getElementById('modal' + id).style.visibility = "visible"
                 this.$refs.DetailSwiper1.$swiper.slideTo(index, false)
                 this.$refs.DetailSwiper2.$swiper.slideTo(index, false)
                 this.$refs.DetailSwiper3.$swiper.slideTo(index, false)
+                this.$refs.DetailRoofSwiper1.$swiper.slideTo(index, false)
+                this.$refs.DetailRoofSwiper2.$swiper.slideTo(index, false)
             },
             closeModal(id) {
                 document.getElementById('modal' + id).style.visibility = "hidden"
@@ -223,7 +349,7 @@
             this._keyListener = function(e) {
                 if (e.key === 'q' && (e.ctrlKey || e.metaKey)) {
                     e.preventDefault();
-                    window.location.href = '/types'
+                    window.location.href = '/admin'
                 }
             };
             document.addEventListener('keydown', this._keyListener.bind(this));

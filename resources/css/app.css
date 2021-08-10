@@ -227,3 +227,8 @@ h1 {
     padding-top: 15vh;
     visibility: hidden;
 }
+
+#step2 {
+    margin-top: -68vh;
+    visibility: hidden;
+}
