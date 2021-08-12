@@ -117,8 +117,8 @@
                             <div @click="openModal(roof1.id, index)" class="swiper-slide-inner" v-bind:style="{ 'background-image': 'url(' + galleryItem + ')' }"></div>
                         </swiper-slide>
                     </swiper>
-                    <button class="swiper-button-prev IndexRoofSwiper1_prev"></button>
-                    <button class="swiper-button-next IndexRoofSwiper1_next"></button>
+                    <!--<button class="swiper-button-prev IndexRoofSwiper1_prev"></button>
+                    <button class="swiper-button-next IndexRoofSwiper1_next"></button>-->
                     <div class="score">
                         <button @click="ScoreRoof(roof1)" :id="'btn'+roof1.id" class="btn btn-score">Голосовать</button>
                         <!--{{ type1.score }}-->
@@ -130,8 +130,8 @@
                             <img :src="galleryItem">
                         </swiper-slide>
                     </swiper>
-                    <button class="swiper-button-prev DetailRoofSwiper1_prev"></button>
-                    <button class="swiper-button-next DetailRoofSwiper1_next"></button>
+                    <!--<button class="swiper-button-prev DetailRoofSwiper1_prev"></button>
+                    <button class="swiper-button-next DetailRoofSwiper1_next"></button>-->
                     <button @click="closeModal(roof1.id)" class="close">&times;</button>
                 </div>
 
@@ -142,8 +142,8 @@
                             <div @click="openModal(roof2.id, index)" class="swiper-slide-inner" v-bind:style="{ 'background-image': 'url(' + galleryItem + ')' }"></div>
                         </swiper-slide>
                     </swiper>
-                    <button class="swiper-button-prev IndexRoofSwiper2_prev"></button>
-                    <button class="swiper-button-next IndexRoofSwiper2_next"></button>
+                    <!--<button class="swiper-button-prev IndexRoofSwiper2_prev"></button>
+                    <button class="swiper-button-next IndexRoofSwiper2_next"></button>-->
                     <div class="score">
                         <button @click="ScoreRoof(roof2)" :id="'btn'+roof2.id" class="btn btn-score">Голосовать</button>
                         <!--{{ type2.score }}-->
@@ -155,8 +155,8 @@
                             <img :src="galleryItem">
                         </swiper-slide>
                     </swiper>
-                    <button class="swiper-button-prev DetailRoofSwiper2_prev"></button>
-                    <button class="swiper-button-next DetailRoofSwiper2_next"></button>
+                    <!--<button class="swiper-button-prev DetailRoofSwiper2_prev"></button>
+                    <button class="swiper-button-next DetailRoofSwiper2_next"></button>-->
                     <button @click="closeModal(roof2.id)" class="close">&times;</button>
                 </div>
             </div>
@@ -224,6 +224,7 @@
                 },
                 swiperOptionsIndexRoof1: {
                     slidesPerView: 1,
+                    allowTouchMove: false,
                     navigation: {
                         nextEl: '.IndexRoofSwiper1_next',
                         prevEl: '.IndexRoofSwiper1_prev'
@@ -231,6 +232,7 @@
                 },
                 swiperOptionsDetailRoof1: {
                     slidesPerView: 1,
+                    allowTouchMove: false,
                     navigation: {
                         nextEl: '.DetailRoofSwiper1_next',
                         prevEl: '.DetailRoofSwiper1_prev'
@@ -238,6 +240,7 @@
                 },
                 swiperOptionsIndexRoof2: {
                     slidesPerView: 1,
+                    allowTouchMove: false,
                     navigation: {
                         nextEl: '.IndexRoofSwiper2_next',
                         prevEl: '.IndexRoofSwiper2_prev'
@@ -245,6 +248,7 @@
                 },
                 swiperOptionsDetailRoof2: {
                     slidesPerView: 1,
+                    allowTouchMove: false,
                     navigation: {
                         nextEl: '.DetailRoofSwiper2_next',
                         prevEl: '.DetailRoofSwiper2_prev'

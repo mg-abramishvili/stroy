@@ -2100,6 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       swiperOptionsIndexRoof1: {
         slidesPerView: 1,
+        allowTouchMove: false,
         navigation: {
           nextEl: '.IndexRoofSwiper1_next',
           prevEl: '.IndexRoofSwiper1_prev'
@@ -2107,6 +2108,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       swiperOptionsDetailRoof1: {
         slidesPerView: 1,
+        allowTouchMove: false,
         navigation: {
           nextEl: '.DetailRoofSwiper1_next',
           prevEl: '.DetailRoofSwiper1_prev'
@@ -2114,6 +2116,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       swiperOptionsIndexRoof2: {
         slidesPerView: 1,
+        allowTouchMove: false,
         navigation: {
           nextEl: '.IndexRoofSwiper2_next',
           prevEl: '.IndexRoofSwiper2_prev'
@@ -2121,6 +2124,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       swiperOptionsDetailRoof2: {
         slidesPerView: 1,
+        allowTouchMove: false,
         navigation: {
           nextEl: '.DetailRoofSwiper2_next',
           prevEl: '.DetailRoofSwiper2_prev'
@@ -34729,14 +34733,6 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-prev IndexRoofSwiper1_prev"
-            }),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-next IndexRoofSwiper1_next"
-            }),
-            _vm._v(" "),
             _c("div", { staticClass: "score" }, [
               _c(
                 "button",
@@ -34773,14 +34769,6 @@ var render = function() {
               }),
               1
             ),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-prev DetailRoofSwiper1_prev"
-            }),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-next DetailRoofSwiper1_next"
-            }),
             _vm._v(" "),
             _c(
               "button",
@@ -34828,14 +34816,6 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-prev IndexRoofSwiper2_prev"
-            }),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-next IndexRoofSwiper2_next"
-            }),
-            _vm._v(" "),
             _c("div", { staticClass: "score" }, [
               _c(
                 "button",
@@ -34872,14 +34852,6 @@ var render = function() {
               }),
               1
             ),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-prev DetailRoofSwiper2_prev"
-            }),
-            _vm._v(" "),
-            _c("button", {
-              staticClass: "swiper-button-next DetailRoofSwiper2_next"
-            }),
             _vm._v(" "),
             _c(
               "button",

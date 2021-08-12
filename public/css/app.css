@@ -145,8 +145,8 @@ h1 {
 
 .modal .close {
     position: absolute;
-    top: 2vh;
-    right: 5vh;
+    top: 5vh;
+    right: 6vh;
     z-index: 10;
     box-shadow: none;
     border: none;
@@ -155,8 +155,12 @@ h1 {
     color: #fff;
     line-height: 1;
     margin-top: -0.5vh;
-    padding: 3vh;
+    padding: 1vh 3.7vh 1.5vh 3.7vh;
     font-weight: normal;
+    opacity: 1;
+    box-shadow: none;
+    border-radius: 100%;
+    background: rgb(46, 84, 142);
 }
 
 .modal img {
