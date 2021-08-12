@@ -269,24 +269,24 @@
         },
         methods: {
             Score(type) {
-                document.getElementById('wrapper').classList.add("blur");
+                //document.getElementById('wrapper').classList.add("blur");
 
-                document.getElementById('confirm').style.visibility = "visible";
+                //document.getElementById('confirm').style.visibility = "visible";
 
-                document.querySelectorAll('.btn-score').forEach(function(button) {
-                    button.disabled = true;
-                });
+                //document.querySelectorAll('.btn-score').forEach(function(button) {
+                //    button.disabled = true;
+                //});
 
                 setTimeout(function(confirm){
-                    document.querySelectorAll('.btn-score').forEach(function(button) {
-                        button.disabled = false;
-                    });
-                    document.getElementById('wrapper').classList.remove("blur");
-                    document.getElementById('confirm').style.visibility = "hidden";
+                    //document.querySelectorAll('.btn-score').forEach(function(button) {
+                    //    button.disabled = false;
+                    //});
+                    //document.getElementById('wrapper').classList.remove("blur");
+                    //document.getElementById('confirm').style.visibility = "hidden";
 
                     document.getElementById('step1').style.visibility = "hidden";
                     document.getElementById('step2').style.visibility = "visible";
-                }, 5000);
+                }, 10);
 
                 axios
                 .post(`/api/types`, {
@@ -336,6 +336,12 @@
                 }))
                 .catch((error) => {
                 });
+
+                this.$refs.IndexSwiper1.$swiper.slideTo(0, false)
+                this.$refs.IndexSwiper2.$swiper.slideTo(0, false)
+                this.$refs.IndexSwiper3.$swiper.slideTo(0, false)
+                this.$refs.IndexRoofSwiper1.$swiper.slideTo(0, false)
+                this.$refs.IndexRoofSwiper2.$swiper.slideTo(0, false)
             },
             openModal(id, index) {
                 document.getElementById('modal' + id).style.visibility = "visible"
