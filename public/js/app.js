@@ -2162,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
         //document.getElementById('confirm').style.visibility = "hidden";
         document.getElementById('step1').style.visibility = "hidden";
         document.getElementById('step2').style.visibility = "visible";
+        document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки потолка';
       }, 10);
       axios.post("/api/types", {
         id: type.id,
@@ -2190,6 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
         document.getElementById('confirm').style.visibility = "hidden";
         document.getElementById('step1').style.visibility = "visible";
         document.getElementById('step2').style.visibility = "hidden";
+        document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры';
       }, 5000);
       axios.post("/api/roofs", {
         id: roof.id,
@@ -34913,7 +34915,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "header" }, [
-          _c("h1", [
+          _c("h1", { attrs: { id: "h1" } }, [
             _vm._v(
               "\n                        Уважаемые посетители шоурума,\n                        "
             ),

@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="header">
-                        <h1>
+                        <h1 id="h1">
                             Уважаемые посетители шоурума,
                             <br>просим Вас выбрать наиболее понравившийся вариант отделки квартиры
                         </h1>
@@ -286,6 +286,8 @@
 
                     document.getElementById('step1').style.visibility = "hidden";
                     document.getElementById('step2').style.visibility = "visible";
+
+                    document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки потолка'
                 }, 10);
 
                 axios
@@ -321,6 +323,8 @@
 
                     document.getElementById('step1').style.visibility = "visible";
                     document.getElementById('step2').style.visibility = "hidden";
+
+                    document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры'
                 }, 5000);
 
                 axios
