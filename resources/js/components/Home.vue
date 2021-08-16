@@ -164,6 +164,22 @@
         </div>
         <div id="confirm" class="confirm">
             <div>Ваш голос принят!</div>
+            <button @click="openCommentForm()" class="btn btn-comment">Оставить пожелание</button>
+        </div>
+        <div id="comment">
+            <textarea
+            :value="input"
+            class="form-control input"
+            @input="onInputChange"
+            placeholder="Ваш комментарий..."
+            style="margin-bottom: 2vh; height: 35vh; font-size: 3vh"
+            ></textarea>
+            <SimpleKeyboard @onChange="onChange" @onKeyPress="onKeyPress" :input="input"/>
+            <button class="btn btn-comment" v-on:click="saveComment(input)">Отправить</button>
+            <button @click="closeComment()" class="close" style="top: 3vh; right: 6vh; position: absolute; color: #fff; font-size: 10vh; font-weight: normal; text-shadow: none;">&times;</button>
+        </div>
+        <div id="final">
+            <div>Спасибо за пожелание!</div>
         </div>
     </div>
 </template>
@@ -171,6 +187,7 @@
 <script>
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
     import 'swiper/css/swiper.css'
+    import SimpleKeyboard from "./SimpleKeyboard";
 
     export default {
         data() {
@@ -180,6 +197,7 @@
                 type3: {},
                 roof1: {},
                 roof2: {},
+                input: '',
                 swiperOptionsIndex1: {
                     slidesPerView: 1,
                     navigation: {
@@ -358,6 +376,42 @@
             closeModal(id) {
                 document.getElementById('modal' + id).style.visibility = "hidden"
             },
+            openCommentForm() {
+                document.getElementById('confirm').style.visibility = "hidden"
+                document.getElementById('comment').style.visibility = "visible"
+            },
+            onChange(input) {
+                this.input = input;
+            },
+            onKeyPress(button) {
+                //console.log("button", button);
+            },
+            onInputChange(input) {
+                this.input = input.target.value;
+            },
+            saveComment(input) {
+                if(input && input.length > 0) {
+                    axios
+                    .post(`/api/comments`, {
+                        comment: input
+                    })
+                    .then((response => {
+                        this.input = ''
+                        document.getElementById('comment').style.visibility = "hidden"
+                        document.getElementById('final').style.visibility = "visible"
+
+                        setTimeout(function(confirm){
+                            document.getElementById('final').style.visibility = "hidden"
+                        }, 3000);
+                    }))
+                    .catch((error) => {
+                    });
+                }
+            },
+            closeComment() {
+                this.input = ''
+                document.getElementById('comment').style.visibility = "hidden"
+            },
         },
         mounted() {
             this._keyListener = function(e) {
@@ -369,11 +423,12 @@
             document.addEventListener('keydown', this._keyListener.bind(this));
         },
         beforeMount() {
-            document.oncontextmenu = new Function("return false;");
+            //document.oncontextmenu = new Function("return false;");
         },
         components: {
             Swiper,
             SwiperSlide,
+            SimpleKeyboard,
         },
     }
 </script>

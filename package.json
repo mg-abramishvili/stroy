@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "moment": "^2.29.1",
+        "simple-keyboard": "^3.0.26",
+        "simple-keyboard-layouts": "^3.0.27",
         "swiper": "^5.4.5",
         "vue-awesome-swiper": "^4.1.1",
         "vue-axios": "^3.2.4",

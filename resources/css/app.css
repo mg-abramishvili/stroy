@@ -228,11 +228,56 @@ h1 {
     z-index: 20;
     font-size: 5vh;
     text-align: center;
-    padding-top: 15vh;
+    padding-top: 10vh;
     visibility: hidden;
 }
 
 #step2 {
     margin-top: -68vh;
+    visibility: hidden;
+}
+
+#comment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(46, 84, 142);
+    color: #fff;
+    z-index: 20;
+    font-size: 5vh;
+    text-align: center;
+    padding: 15vh;
+    visibility: hidden;
+}
+
+.hg-theme-default .hg-button {
+    color: #222;
+    font-size: 3vh;
+    height: 5vh !important;
+}
+
+.btn-comment {
+    background-color: rgb(191 222 255);
+    margin-top: 2vh;
+    font-size: 3vh;
+    padding: 2vh 6vh;
+    font-weight: bold;
+}
+
+#final {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(46, 84, 142);
+    color: #fff;
+    z-index: 20;
+    font-size: 5vh;
+    text-align: center;
+    padding: 15vh;
+    padding-top: 40vh;
     visibility: hidden;
 }

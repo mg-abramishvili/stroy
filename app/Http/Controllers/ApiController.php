@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use App\Models\Roof;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -28,5 +29,12 @@ class ApiController extends Controller
         $roof = Roof::find($data['id']);
         $roof->score = $data['score'];
         $roof->save();
+    }
+
+    public function comments_store(Request $request) {
+        $data = request()->all();
+        $comment = new Comment();
+        $comment->comment = $data['comment'];
+        $comment->save();
     }
 }

@@ -8,3 +8,5 @@ Route::post('/types','App\Http\Controllers\ApiController@types_score');
 
 Route::get('/roofs','App\Http\Controllers\ApiController@roofs');
 Route::post('/roofs','App\Http\Controllers\ApiController@roofs_score');
+
+Route::post('/comments','App\Http\Controllers\ApiController@comments_store');

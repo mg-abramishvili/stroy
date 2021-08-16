@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use App\Models\Roof;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -41,7 +42,8 @@ class AdminController extends Controller
     {
         $types = Type::all();
         $roofs = Roof::all();
-        return view('index', compact('types', 'roofs'));
+        $comments = Comment::orderBy('created_at', 'desc')->get();
+        return view('index', compact('types', 'roofs', 'comments'));
     }
 
     public function type_create()
@@ -153,4 +155,6 @@ class AdminController extends Controller
         $roof->save();
         return redirect('/admin');
     }
+
+
 }
