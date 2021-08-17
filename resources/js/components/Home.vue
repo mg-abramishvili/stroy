@@ -107,6 +107,9 @@
                     <button class="swiper-button-next DetailSwiper3_next"></button>
                     <button @click="closeModal(type3.id)" class="close">&times;</button>
                 </div>
+                <div class="col-12" style="text-align:center;">
+                    <button @click="openCommentForm()" style="background: none; color: rgb(46, 84, 142); box-shadow: none; border: 0.15vh solid rgb(46, 84, 142); padding: 1.5vh 5vh; font-size: 2vh; font-weight: bold; margin-top: 1vh; border-radius: 1vh;">Оставить пожелание</button>
+                </div>
             </div>
 
             <div id="step2" class="row">

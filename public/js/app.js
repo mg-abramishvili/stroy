@@ -2063,6 +2063,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -35024,6 +35027,35 @@ var render = function() {
             )
           ],
           1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-12", staticStyle: { "text-align": "center" } },
+          [
+            _c(
+              "button",
+              {
+                staticStyle: {
+                  background: "none",
+                  color: "rgb(46, 84, 142)",
+                  "box-shadow": "none",
+                  border: "0.15vh solid rgb(46, 84, 142)",
+                  padding: "1.5vh 5vh",
+                  "font-size": "2vh",
+                  "font-weight": "bold",
+                  "margin-top": "1vh",
+                  "border-radius": "1vh"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.openCommentForm()
+                  }
+                }
+              },
+              [_vm._v("Оставить пожелание")]
+            )
+          ]
         )
       ]),
       _vm._v(" "),
