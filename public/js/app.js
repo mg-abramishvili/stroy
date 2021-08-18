@@ -2066,6 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2078,6 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
       roof1: {},
       roof2: {},
       input: '',
+      timer: null,
       swiperOptionsIndex1: {
         slidesPerView: 1,
         navigation: {
@@ -2205,16 +2207,20 @@ __webpack_require__.r(__webpack_exports__);
       document.querySelectorAll('.btn-score').forEach(function (button) {
         button.disabled = true;
       });
-      setTimeout(function (confirm) {
-        document.querySelectorAll('.btn-score').forEach(function (button) {
-          button.disabled = false;
-        });
-        document.getElementById('wrapper').classList.remove("blur");
-        document.getElementById('confirm').style.visibility = "hidden";
-        document.getElementById('step1').style.visibility = "visible";
-        document.getElementById('step2').style.visibility = "hidden";
-        document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры';
+      this.timeout();
+      /*
+      setTimeout(function(confirm){
+          document.querySelectorAll('.btn-score').forEach(function(button) {
+              button.disabled = false;
+          });
+          document.getElementById('wrapper').classList.remove("blur");
+          document.getElementById('confirm').style.visibility = "hidden";
+           document.getElementById('step1').style.visibility = "visible";
+          document.getElementById('step2').style.visibility = "hidden";
+           document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры'
       }, 5000);
+      */
+
       axios.post("/api/roofs", {
         id: roof.id,
         score: parseInt(roof.score) + 1
@@ -2269,9 +2275,36 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (error) {});
       }
     },
+    reset: function reset() {
+      document.querySelectorAll('.btn-score').forEach(function (button) {
+        button.disabled = false;
+      });
+      document.getElementById('wrapper').classList.remove("blur");
+      document.getElementById('confirm').style.visibility = "hidden";
+      document.getElementById('comment').style.visibility = "hidden";
+      document.getElementById('step1').style.visibility = "visible";
+      document.getElementById('step2').style.visibility = "hidden";
+      document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры';
+    },
     closeComment: function closeComment() {
       this.input = '';
-      document.getElementById('comment').style.visibility = "hidden";
+      this.reset();
+    },
+    closeConfirm: function closeConfirm() {
+      this.reset();
+      this.killTimer();
+    },
+    timeout: function timeout() {
+      var _this5 = this;
+
+      this.timer = setTimeout(function () {
+        _this5.reset();
+      }, 5000);
+    },
+    killTimer: function killTimer() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
     }
   },
   mounted: function mounted() {
@@ -35242,6 +35275,33 @@ var render = function() {
           }
         },
         [_vm._v("Оставить пожелание")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticStyle: {
+            position: "absolute",
+            right: "0",
+            top: "0",
+            "font-size": "10vh",
+            color: "#555",
+            "background-color": "#bfdeff",
+            width: "10vh",
+            height: "10vh",
+            "line-height": "0.9",
+            "border-radius": "100%",
+            "margin-top": "-4vh",
+            "margin-right": "-4vh",
+            border: "0.3vh solid #2e548e"
+          },
+          on: {
+            click: function($event) {
+              return _vm.closeConfirm()
+            }
+          }
+        },
+        [_vm._v("×")]
       )
     ]),
     _vm._v(" "),

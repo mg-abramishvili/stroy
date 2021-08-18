@@ -168,6 +168,7 @@
         <div id="confirm" class="confirm">
             <div>Ваш голос принят!</div>
             <button @click="openCommentForm()" class="btn btn-comment">Оставить пожелание</button>
+            <div @click="closeConfirm()" style="position: absolute; right: 0; top: 0; font-size: 10vh; color: #555; background-color: #bfdeff; width: 10vh; height: 10vh; line-height: 0.9; border-radius: 100%; margin-top: -4vh; margin-right: -4vh; border: 0.3vh solid #2e548e;">&times;</div>
         </div>
         <div id="comment">
             <textarea
@@ -201,6 +202,7 @@
                 roof1: {},
                 roof2: {},
                 input: '',
+                timer: null,
                 swiperOptionsIndex1: {
                     slidesPerView: 1,
                     navigation: {
@@ -335,6 +337,9 @@
                     button.disabled = true;
                 });
 
+                this.timeout()
+
+                /*
                 setTimeout(function(confirm){
                     document.querySelectorAll('.btn-score').forEach(function(button) {
                         button.disabled = false;
@@ -347,6 +352,7 @@
 
                     document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры'
                 }, 5000);
+                */
 
                 axios
                 .post(`/api/roofs`, {
@@ -411,9 +417,36 @@
                     });
                 }
             },
+            reset() {
+                document.querySelectorAll('.btn-score').forEach(function(button) {
+                    button.disabled = false;
+                });
+                document.getElementById('wrapper').classList.remove("blur");
+                document.getElementById('confirm').style.visibility = "hidden";
+                document.getElementById('comment').style.visibility = "hidden";
+
+                document.getElementById('step1').style.visibility = "visible";
+                document.getElementById('step2').style.visibility = "hidden";
+
+                document.getElementById('h1').innerHTML = 'Уважаемые посетители шоурума, <br>\nпросим Вас выбрать наиболее понравившийся вариант отделки квартиры'
+            },
             closeComment() {
                 this.input = ''
-                document.getElementById('comment').style.visibility = "hidden"
+                this.reset()
+            },
+            closeConfirm() {
+                this.reset()
+                this.killTimer()
+            },
+            timeout() {
+                this.timer = setTimeout(() => {
+                    this.reset()
+                }, 5000)
+            },
+            killTimer() {
+                if (this.timer) {
+                    clearTimeout(this.timer)
+                }
             },
         },
         mounted() {
