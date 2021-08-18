@@ -2317,7 +2317,8 @@ __webpack_require__.r(__webpack_exports__);
 
     document.addEventListener('keydown', this._keyListener.bind(this));
   },
-  beforeMount: function beforeMount() {//document.oncontextmenu = new Function("return false;");
+  beforeMount: function beforeMount() {
+    document.oncontextmenu = new Function("return false;");
   },
   components: {
     Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper,
