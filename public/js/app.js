@@ -2248,6 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('modal' + id).style.visibility = "hidden";
     },
     openCommentForm: function openCommentForm() {
+      this.killTimer();
       document.getElementById('confirm').style.visibility = "hidden";
       document.getElementById('comment').style.visibility = "visible";
     },
@@ -2267,6 +2268,9 @@ __webpack_require__.r(__webpack_exports__);
           comment: input
         }).then(function (response) {
           _this4.input = '';
+
+          _this4.reset();
+
           document.getElementById('comment').style.visibility = "hidden";
           document.getElementById('final').style.visibility = "visible";
           setTimeout(function (confirm) {

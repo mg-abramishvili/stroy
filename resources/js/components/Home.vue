@@ -386,6 +386,7 @@
                 document.getElementById('modal' + id).style.visibility = "hidden"
             },
             openCommentForm() {
+                this.killTimer()
                 document.getElementById('confirm').style.visibility = "hidden"
                 document.getElementById('comment').style.visibility = "visible"
             },
@@ -406,6 +407,7 @@
                     })
                     .then((response => {
                         this.input = ''
+                        this.reset()
                         document.getElementById('comment').style.visibility = "hidden"
                         document.getElementById('final').style.visibility = "visible"
 
