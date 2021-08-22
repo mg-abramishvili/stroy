@@ -35267,7 +35267,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "confirm", attrs: { id: "confirm" } }, [
-      _c("div", [_vm._v("Ваш голос принят!")]),
+      _c("div", [_vm._v("Спасибо за Ваше мнение!")]),
       _vm._v(" "),
       _c(
         "button",

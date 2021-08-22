@@ -166,7 +166,7 @@
 
         </div>
         <div id="confirm" class="confirm">
-            <div>Ваш голос принят!</div>
+            <div>Спасибо за Ваше мнение!</div>
             <button @click="openCommentForm()" class="btn btn-comment">Оставить пожелание</button>
             <div @click="closeConfirm()" style="position: absolute; right: 0; top: 0; font-size: 10vh; color: #555; background-color: #bfdeff; width: 10vh; height: 10vh; line-height: 0.9; border-radius: 100%; margin-top: -4vh; margin-right: -4vh; border: 0.3vh solid #2e548e;">&times;</div>
         </div>
